@@ -1,32 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState, useEffect } from 'react'
+import axios from "axios"
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [numStores, setNumStores] = useState(0)
+  const [numItems, setNumItems] = useState(0)
+  const headers = {
+    'Ocp-Apim-Subscription-Key': '4ae9400a1eda4f14b3e7227f24b74b44',
+    'accept': 'application/json',
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST,OPTIONS',
+    'Access-Control-Allow-Headers': 'X-Requested-With,content-type,Authorization,Ocp-Apim-Subscription-Key'
+  }
+
+  useEffect(() => {
+    (async() => {
+      const stores = await axios.get("https://apimdev.wakefern.com/mockexample/V1/getStoreDetails", {
+        headers: headers
+      })
+  
+      const items = await axios.get("https://apimdev.wakefern.com/mockexample/V1/getItemDetails", {
+        headers: headers
+      })
+  
+      setNumItems(items.data.length)
+      setNumStores(stores.data.length)
+      console.log("num stores:", stores.data.length, "and num items:", items.data.length)
+    })()
+  }, [])
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <h1>Number of Wakefern stores: {numStores}</h1>
+      <h1>Number of items: {numItems}</h1>
     </div>
   )
 }
