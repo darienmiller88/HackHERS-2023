@@ -13,6 +13,7 @@ require (
 	github.com/golang/mock v1.6.0 // indirect
 	github.com/golang/snappy v0.0.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/joho/godotenv v1.5.1 // indirect
 	github.com/kamva/mgm/v3 v3.5.0 // indirect
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/nerock/ozzo-validation v3.6.0+incompatible // indirect

@@ -1,0 +1,51 @@
+.Landing{
+    color: var(--primary);
+
+}
+
+.login_wrapper{
+    text-align: right;
+    margin: 10px 20px;
+
+    
+}
+
+.logo_wrapper{
+    text-align: center;
+
+    img{
+        width: 200px;
+        height: auto;
+
+        margin: 50px 0px;
+    }
+}
+
+.horizontal{
+    border: 1px black solid;
+    width: 100vw;
+    margin: auto;
+
+    @media screen and (min-width: 1200px) {
+        width: 90vw;
+    }
+}
+
+h1, h3{
+    text-align: center;
+
+}
+
+.selection_wrapper{
+    text-align: center;
+    margin: 20px 0px;
+}
+
+.name_wrapper{
+    text-align: center;
+}
+
+.submit_wrapper{
+    text-align: center;
+    margin: 10px 0px;
+}
