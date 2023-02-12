@@ -14,7 +14,10 @@ import (
 )
 
 type FeedBackForm struct{
-	StoreName string `json:"store_name"`
+	mgm.Model
+	StoreName  string `json:"store_name"`
+	Suggestion string `json:"suggestion"`
+	Username   string `json:"username"`
 }
 
 func main(){

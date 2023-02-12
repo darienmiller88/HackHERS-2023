@@ -8,7 +8,8 @@ export default function Landing() {
     const [stores, setStores] = useState([])
     const [numItems, setNumItems] = useState(0)
     const [name, setName] = useState("")
-    const [selectedStore, setSelectedStore] = useState("6612 Landis Ave #UNIT WS")
+    const [suggestion, setSuggestion] = useState("")
+    const [store_name, setStoreName] = useState("6612 Landis Ave #UNIT WS")
     const headers = {
       'Ocp-Apim-Subscription-Key': '4ae9400a1eda4f14b3e7227f24b74b44',
       'accept': 'application/json',
@@ -35,6 +36,11 @@ export default function Landing() {
     const submitForm = e => {
         e.preventDefault()
 
+        const data = {
+            suggestion,
+
+        }
+
         console.log("user selected: ", selectedStore)
     }       
 
@@ -59,7 +65,7 @@ export default function Landing() {
             <form onSubmit={submitForm}>
                 <div className={styles.selection_wrapper}>
                     <label>Please select your the Wayfern Food Corp you are currently at:</label>
-                    <select value={selectedStore} onChange={e => setSelectedStore(e.target.value)} required>
+                    <select value={store_name} onChange={e => setStoreName(e.target.value)} required>
                         {
                             stores.map((store, i) => {
                                 return <option value={store.Address} key={i}>
@@ -72,7 +78,16 @@ export default function Landing() {
 
                 <div className={styles.name_wrapper}>
                     <label>Name:</label>
-                    <input type="text" value={name} onChange={e => setName(e.target.name)}/>
+                    <input type="text" value={name} onChange={e => setName(e.target.value)} required/>
+                </div>
+                <br />
+                <br />
+                <div className={styles.suggestion_wrapper}>
+                    <label>Do you have any suggestions to improve our products and our services?</label>
+                    <br />
+                    <textarea required className={styles.textarea} value={suggestion} onChange={e => setSuggestion(e.target.value)} cols={100} rows={15}>
+
+                    </textarea>
                 </div>
 
                 <div className={styles.submit_wrapper}>
